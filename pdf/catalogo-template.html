@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700;900&family=Space+Mono:wght@400;700&display=swap');
+
+    @page { size: A4; margin: 0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Barlow', sans-serif; color: #2A2826; font-size: 11pt; line-height: 1.5; }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 20mm;
+      page-break-after: always;
+      position: relative;
+    }
+    .page:last-child { page-break-after: auto; }
+
+    /* --- Cover --- */
+    .cover {
+      background: #2A2826;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 30mm;
+    }
+    .cover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(0deg, transparent, transparent 8mm, rgba(255,255,255,0.015) 8mm, rgba(255,255,255,0.015) 8.2mm),
+        repeating-linear-gradient(90deg, transparent, transparent 8mm, rgba(255,255,255,0.01) 8mm, rgba(255,255,255,0.01) 8.2mm);
+    }
+    .cover * { position: relative; z-index: 1; }
+    .cover-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20mm;
+    }
+    .cover-block { width: 40px; display: flex; flex-direction: column; gap: 3px; }
+    .cover-block div { height: 10px; background: #7A7670; border-radius: 1px; }
+    .cover-block .blue { height: 3px; background: #2B4FDB; }
+    .cover-letters { font-size: 36pt; font-weight: 900; color: #D4D1CC; letter-spacing: 4px; }
+    .cover h1 {
+      font-size: 28pt;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 8mm;
+    }
+    .cover h1 span { color: #2B4FDB; }
+    .cover p { font-size: 13pt; color: #9A9690; max-width: 120mm; line-height: 1.6; margin-bottom: 4mm; }
+    .cover-badge {
+      display: inline-block;
+      padding: 4px 14px;
+      background: rgba(43,79,219,0.15);
+      color: #7B9AFF;
+      font-weight: 600;
+      font-size: 9pt;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-radius: 3px;
+      margin-bottom: 8mm;
+    }
+    .cover-footer {
+      position: absolute;
+      bottom: 20mm;
+      left: 30mm;
+      font-size: 8pt;
+      color: #5C5955;
+    }
+
+    /* --- Content pages --- */
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 5mm;
+      border-bottom: 2px solid #2B4FDB;
+      margin-bottom: 8mm;
+    }
+    .page-header-logo { font-weight: 900; font-size: 14pt; color: #9A9690; letter-spacing: 2px; }
+    .page-header-title { font-size: 9pt; color: #9A9690; text-transform: uppercase; letter-spacing: 1px; }
+
+    h2 { font-size: 18pt; font-weight: 700; color: #2A2826; margin-bottom: 5mm; }
+    h3 { font-size: 13pt; font-weight: 700; color: #2A2826; margin-bottom: 3mm; margin-top: 6mm; }
+    p { margin-bottom: 3mm; color: #5C5955; }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
+    .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4mm; }
+
+    /* Cards */
+    .prod-card {
+      border: 1px solid #D4D1CC;
+      border-radius: 4px;
+      padding: 5mm;
+    }
+    .prod-card h4 {
+      font-size: 11pt;
+      font-weight: 700;
+      color: #2B4FDB;
+      margin-bottom: 2mm;
+    }
+    .prod-card p { font-size: 9pt; line-height: 1.4; }
+
+    /* Specs table */
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 4mm;
+    }
+    .specs-table th, .specs-table td {
+      text-align: left;
+      padding: 2.5mm 4mm;
+      border-bottom: 1px solid #E8E6E3;
+      font-size: 10pt;
+    }
+    .specs-table th {
+      background: #F0EFED;
+      font-weight: 600;
+      color: #5C5955;
+      text-transform: uppercase;
+      font-size: 8pt;
+      letter-spacing: 0.5px;
+    }
+    .specs-table td:last-child {
+      font-family: 'Space Mono', monospace;
+      font-size: 9.5pt;
+      color: #1E3AA6;
+      font-weight: 700;
+    }
+    .specs-table tr:nth-child(even) { background: #FAFAF9; }
+
+    /* Advantages */
+    .advantage {
+      display: flex;
+      gap: 3mm;
+      margin-bottom: 4mm;
+      align-items: flex-start;
+    }
+    .advantage-dot {
+      width: 6px;
+      height: 6px;
+      background: #2B4FDB;
+      border-radius: 50%;
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+    .advantage h4 { font-size: 10pt; font-weight: 600; margin-bottom: 1mm; }
+    .advantage p { font-size: 9pt; margin: 0; }
+
+    /* Apps grid */
+    .app-tag {
+      display: inline-block;
+      padding: 2mm 4mm;
+      background: #F0EFED;
+      border-radius: 3px;
+      font-size: 9pt;
+      font-weight: 500;
+      margin: 1mm;
+      color: #3E3C39;
+    }
+
+    /* Contact page */
+    .contact-page { background: #2A2826; color: #D4D1CC; }
+    .contact-page h2 { color: #fff; }
+    .contact-page .page-header { border-color: #2B4FDB; }
+    .contact-page .page-header-logo { color: #7A7670; }
+    .contact-page .page-header-title { color: #7A7670; }
+    .contact-item {
+      display: flex;
+      gap: 4mm;
+      margin-bottom: 5mm;
+      align-items: flex-start;
+    }
+    .contact-label { font-weight: 600; color: #B8B5B0; font-size: 10pt; }
+    .contact-value { color: #D4D1CC; font-size: 11pt; }
+    .contact-page .tagline {
+      position: absolute;
+      bottom: 30mm;
+      left: 20mm;
+      font-size: 20pt;
+      font-weight: 900;
+      color: #3E3C39;
+      max-width: 140mm;
+      line-height: 1.2;
+    }
+    .contact-page .tagline span { color: #2B4FDB; }
+
+    .page-num {
+      position: absolute;
+      bottom: 10mm;
+      right: 20mm;
+      font-size: 8pt;
+      color: #9A9690;
+    }
+  </style>
+</head>
+<body>
+
+<!-- PAGE 1: COVER -->
+<div class="page cover">
+  <div class="cover-logo">
+    <div class="cover-block">
+      <div></div><div class="blue"></div><div></div><div class="blue"></div><div></div>
+    </div>
+    <span class="cover-letters">IZO</span>
+  </div>
+  <div class="cover-badge">Fabricante exclusivo en España</div>
+  <h1>Hormigón ligero<br><span>aislante.</span></h1>
+  <p>Tecnología europea de producción exclusiva. Paneles, bloques y soluciones de aislamiento con ratios peso/resistencia superiores al hormigón celular autoclavado convencional.</p>
+  <p style="font-size: 10pt; color: #7A7670; margin-top: 8mm;">Catálogo de producto 2026</p>
+  <div class="cover-footer">IZO — Placas de Hormigón Aligerado &nbsp;|&nbsp; España</div>
+</div>
+
+<!-- PAGE 2: PRODUCTO -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-logo">IZO</span>
+    <span class="page-header-title">Producto</span>
+  </div>
+
+  <h2>Hormigón ligero aislante de última generación</h2>
+  <p>IZO produce hormigón ligero aislante a base de cemento mediante una tecnología europea exclusiva. El resultado es un material con relaciones peso/resistencia similares o superiores a las del hormigón celular autoclavado (AAC), pero sin necesidad de autoclavado ni curado térmico.</p>
+  <p>Gracias al método de producción por vertido en húmedo, el material se puede reforzar con fibras de polipropileno o acero, mejorando significativamente su manipulación, resistencia a la tracción y capacidad de fijación mecánica directa.</p>
+
+  <h3>Modalidades de producción</h3>
+  <div class="three-col" style="margin-top: 3mm;">
+    <div class="prod-card">
+      <h4>Planta estacionaria</h4>
+      <p>Producción de prefabricados en fábrica con control total de calidad. Paneles, bloques y elementos especiales con superficies lisas.</p>
+    </div>
+    <div class="prod-card">
+      <h4>Planta móvil</h4>
+      <p>Producción in situ mediante plantas contenedorizadas o sobre camión. Ideal para proyectos de gran volumen.</p>
+    </div>
+    <div class="prod-card">
+      <h4>Paneles</h4>
+      <p>Paneles de tabiquería reforzados con fibra, listos para pintar. 40–60 kg/m² en 100 mm. Eurocode Clase A.</p>
+    </div>
+  </div>
+
+  <h3>Ventajas competitivas</h3>
+  <div class="two-col" style="margin-top: 2mm;">
+    <div>
+      <div class="advantage">
+        <div class="advantage-dot"></div>
+        <div><h4>Sin autoclavado</h4><p>No requiere autoclave ni curado térmico. Menor inversión en infraestructura.</p></div>
+      </div>
+      <div class="advantage">
+        <div class="advantage-dot"></div>
+        <div><h4>Superior al AAC</h4><p>Ratios peso/resistencia iguales o superiores al hormigón celular autoclavado.</p></div>
+      </div>
+      <div class="advantage">
+        <div class="advantage-dot"></div>
+        <div><h4>Refuerzo con fibra</h4><p>Fijación mecánica directa con tornillos, sin tacos ni anclajes especiales.</p></div>
+      </div>
+    </div>
+    <div>
+      <div class="advantage">
+        <div class="advantage-dot"></div>
+        <div><h4>Superficies lisas</h4><p>Acabado de hormigón vibrado. Listas para pintar, sin enlucido.</p></div>
+      </div>
+      <div class="advantage">
+        <div class="advantage-dot"></div>
+        <div><h4>Producción flexible</h4><p>Planta fija para prefabricado o planta móvil contenedorizada para obra.</p></div>
+      </div>
+      <div class="advantage">
+        <div class="advantage-dot"></div>
+        <div><h4>Fabricación en España</h4><p>Ventaja logística directa para mercados europeo, MENA y África.</p></div>
+      </div>
+    </div>
+  </div>
+  <span class="page-num">2</span>
+</div>
+
+<!-- PAGE 3: ESPECIFICACIONES -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-logo">IZO</span>
+    <span class="page-header-title">Especificaciones técnicas</span>
+  </div>
+
+  <h2>Datos técnicos</h2>
+  <p>Rango completo de densidades y configuraciones disponibles. Datos verificados de producción.</p>
+
+  <h3>Especificaciones generales</h3>
+  <table class="specs-table">
+    <thead>
+      <tr><th>Propiedad</th><th>Valor</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Densidad</td><td>150–750 kg/m³</td></tr>
+      <tr><td>Resistencia a compresión</td><td>0,1–6 MPa</td></tr>
+      <tr><td>Conductividad térmica</td><td>λ 0,05–0,21 W/mK</td></tr>
+      <tr><td>Contracción</td><td>0,2 ‰</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Especificaciones de paneles</h3>
+  <table class="specs-table">
+    <thead>
+      <tr><th>Propiedad</th><th>Valor</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Densidad (paneles)</td><td>400–600 kg/m³</td></tr>
+      <tr><td>Ancho estándar</td><td>600 mm</td></tr>
+      <tr><td>Altura</td><td>2.400–4.000 mm</td></tr>
+      <tr><td>Espesor</td><td>50–200 mm</td></tr>
+      <tr><td>Peso por panel</td><td>29–288 kg</td></tr>
+      <tr><td>Peso por m²</td><td>20–120 kg/m²</td></tr>
+      <tr><td>Aislamiento acústico (STC)</td><td>35–55 dB</td></tr>
+      <tr><td>Resistencia al fuego</td><td>Eurocode Clase A</td></tr>
+      <tr><td>Enlucido necesario</td><td>No</td></tr>
+      <tr><td>Apto para zonas húmedas</td><td>Sí</td></tr>
+      <tr><td>Resistencia a la humedad</td><td>Muy buena</td></tr>
+      <tr><td>Resistencia a las heladas</td><td>Muy buena</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin-top: 8mm;">Aplicaciones</h3>
+  <div style="margin-top: 2mm;">
+    <span class="app-tag">Tabiques divisorios</span>
+    <span class="app-tag">Fachadas</span>
+    <span class="app-tag">Aislamiento de cubiertas</span>
+    <span class="app-tag">Relleno ligero</span>
+    <span class="app-tag">Suelos compuestos</span>
+    <span class="app-tag">Muros de carga</span>
+    <span class="app-tag">Paneles acústicos</span>
+  </div>
+  <span class="page-num">3</span>
+</div>
+
+<!-- PAGE 4: CONTACTO -->
+<div class="page contact-page">
+  <div class="page-header">
+    <span class="page-header-logo">IZO</span>
+    <span class="page-header-title">Contacto</span>
+  </div>
+
+  <h2 style="margin-bottom: 10mm;">¿Hablamos?</h2>
+
+  <div class="contact-item">
+    <div>
+      <div class="contact-label">Email</div>
+      <div class="contact-value">info@izo.es</div>
+    </div>
+  </div>
+  <div class="contact-item">
+    <div>
+      <div class="contact-label">Teléfono</div>
+      <div class="contact-value">+34 XXX XXX XXX</div>
+    </div>
+  </div>
+  <div class="contact-item">
+    <div>
+      <div class="contact-label">Ubicación</div>
+      <div class="contact-value">España</div>
+    </div>
+  </div>
+  <div class="contact-item">
+    <div>
+      <div class="contact-label">Web</div>
+      <div class="contact-value">www.izo.es</div>
+    </div>
+  </div>
+
+  <div class="tagline">Hormigón ligero<br><span>aislante.</span><br>Fabricado en España.</div>
+  <span class="page-num" style="color: #5C5955;">4</span>
+</div>
+
+</body>
+</html>

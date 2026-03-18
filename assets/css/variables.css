@@ -1,0 +1,101 @@
+/* ============================================
+   IZO — Design System Variables
+   Hormigón Ligero Aislante
+   ============================================ */
+
+:root {
+  /* ---- Paleta de colores ---- */
+
+  /* Azul corporativo — extraído del logo (líneas horizontales del anagrama) */
+  --izo-primary: #2B4FDB;
+  --izo-primary-dark: #1E3AA6;
+  --izo-primary-light: #E8EDFA;
+  --izo-primary-rgb: 43, 79, 219;
+
+  /* Grises hormigón — extraídos de la textura del anagrama */
+  --izo-concrete-100: #F5F4F2;
+  --izo-concrete-200: #E8E6E3;
+  --izo-concrete-300: #D4D1CC;
+  --izo-concrete-400: #B8B5B0;
+  --izo-concrete-500: #9A9690;
+  --izo-concrete-600: #7A7670;
+  --izo-concrete-700: #5C5955;
+  --izo-concrete-800: #3E3C39;
+  --izo-concrete-900: #2A2826;
+
+  /* Neutros funcionales */
+  --izo-white: #FFFFFF;
+  --izo-black: #1A1918;
+  --izo-text: #2A2826;
+  --izo-text-secondary: #5C5955;
+  --izo-text-muted: #9A9690;
+  --izo-border: #D4D1CC;
+  --izo-bg: #FAFAF9;
+  --izo-bg-alt: #F0EFED;
+
+  /* CTA / Acento — azul primario es suficiente para CTAs sobre fondos grises */
+  --izo-cta: var(--izo-primary);
+  --izo-cta-hover: var(--izo-primary-dark);
+
+  /* ---- Tipografía ---- */
+
+  /* Headings: Barlow — sans-serif geométrica, peso industrial, excelente en bold/black */
+  --izo-font-heading: 'Barlow', sans-serif;
+
+  /* Body: Barlow en peso regular — misma familia para cohesión */
+  --izo-font-body: 'Barlow', sans-serif;
+
+  /* Datos técnicos / specs: Space Mono para cifras y especificaciones */
+  --izo-font-mono: 'Space Mono', monospace;
+
+  /* Escala tipográfica */
+  --izo-text-xs: 0.75rem;     /* 12px */
+  --izo-text-sm: 0.875rem;    /* 14px */
+  --izo-text-base: 1rem;      /* 16px */
+  --izo-text-lg: 1.125rem;    /* 18px */
+  --izo-text-xl: 1.25rem;     /* 20px */
+  --izo-text-2xl: 1.5rem;     /* 24px */
+  --izo-text-3xl: 2rem;       /* 32px */
+  --izo-text-4xl: 2.5rem;     /* 40px */
+  --izo-text-5xl: 3.25rem;    /* 52px */
+  --izo-text-6xl: 4rem;       /* 64px */
+
+  /* Pesos tipográficos */
+  --izo-weight-light: 300;
+  --izo-weight-regular: 400;
+  --izo-weight-medium: 500;
+  --izo-weight-semibold: 600;
+  --izo-weight-bold: 700;
+  --izo-weight-black: 900;
+
+  /* Interlineado */
+  --izo-leading-tight: 1.1;
+  --izo-leading-snug: 1.25;
+  --izo-leading-normal: 1.5;
+  --izo-leading-relaxed: 1.75;
+
+  /* ---- Espaciado ---- */
+  --izo-space-xs: 0.25rem;    /* 4px */
+  --izo-space-sm: 0.5rem;     /* 8px */
+  --izo-space-md: 1rem;       /* 16px */
+  --izo-space-lg: 1.5rem;     /* 24px */
+  --izo-space-xl: 2rem;       /* 32px */
+  --izo-space-2xl: 3rem;      /* 48px */
+  --izo-space-3xl: 4rem;      /* 64px */
+  --izo-space-4xl: 6rem;      /* 96px */
+  --izo-space-5xl: 8rem;      /* 128px */
+
+  /* ---- Layout ---- */
+  --izo-max-width: 1200px;
+  --izo-max-width-narrow: 800px;
+  --izo-border-radius: 4px;
+  --izo-border-radius-lg: 8px;
+
+  /* ---- Sombras ---- */
+  --izo-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --izo-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --izo-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+  /* ---- Transiciones ---- */
+  --izo-transition: 0.2s ease;
+}

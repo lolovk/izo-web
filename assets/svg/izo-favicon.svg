@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Favicon: bloques isométricos simplificados -->
+  <!-- Bloque 1 -->
+  <polygon fill="#B8B5B0" points="8,10 52,10 52,24 8,24"/>
+  <polygon fill="#D4D1CC" points="8,10 52,10 58,5 14,5"/>
+  <polygon fill="#9A9690" points="52,10 58,5 58,19 52,24"/>
+  <!-- Franja azul 1 -->
+  <rect fill="#2B4FDB" x="5" y="25" width="50" height="4"/>
+  <!-- Bloque 2 -->
+  <polygon fill="#B8B5B0" points="8,30 52,30 52,44 8,44"/>
+  <polygon fill="#D4D1CC" points="8,30 52,30 58,25 14,25"/>
+  <polygon fill="#9A9690" points="52,30 58,25 58,39 52,44"/>
+  <!-- Franja azul 2 -->
+  <rect fill="#2B4FDB" x="5" y="45" width="50" height="4"/>
+  <!-- Bloque 3 -->
+  <polygon fill="#B8B5B0" points="8,50 52,50 52,64 8,64"/>
+  <polygon fill="#D4D1CC" points="8,50 52,50 58,45 14,45"/>
+  <polygon fill="#9A9690" points="52,50 58,45 58,59 52,64"/>
+</svg>
